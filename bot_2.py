@@ -1,12 +1,7 @@
 import telebot
 from telebot import types
 
-env = '5128374047:AAFiDR4Vr2nCHq1_xpF-P-0QOFzUlNDP0ew'
-file = open('./test.env')
-env_2 = file.readlines()[0]
-# env_3 = '{}'.format(env_2)
-file.close()
-# print(env_4)
+env = 'TOKEN'
 bot = telebot.TeleBot(env)
 
 
