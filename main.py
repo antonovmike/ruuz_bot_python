@@ -1,11 +1,11 @@
 import telebot
 from telebot import types
 
-env = 'TOKEN'
 file = open('./test.env')
-env_2 = file.readlines()[0]
+env = file.readlines()[0]
 file.close()
-bot = telebot.TeleBot(env)
+index = len(env) - 1
+bot = telebot.TeleBot(env[:index])
 
 
 @bot.message_handler(content_types=['text'])
@@ -23,6 +23,7 @@ def start(message):
         question = 'Что вы хотите перевести?'
         bot.send_message(message.from_user.id, text=question, reply_markup=keyboard)
 
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     if call.data == "greetings":
@@ -33,7 +34,6 @@ def callback_worker(call):
         bot.send_message(call.message.chat.id, 'HA YAXSHI, RAHMAT. SIZDA CHI? - Хорошо, спасибо. А у Вас?\n\nMEN YAXSHIMAN. RAHMAT! SIZCHI? - Хорошо, спасибо, а Ваши?')
     if call.data == "by":
         bot.send_message(call.message.chat.id, 'KO’RISHKUNCHA / KO’RISHKUNCHA XAYR - до свидания\n\nXAYR - пока\n\nUCHRASHUVGACHA/UCHRASHAMIZ - увидимся\n\nSAGIBOLING - пока / будьте здоровы')
-
 
 
 bot.polling(none_stop=True, interval=1)
