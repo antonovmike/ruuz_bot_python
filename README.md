@@ -1,4 +1,6 @@
-# tg_bot_test
+# ruuz_bot_python
+
+![ruuz_bot_python](https://github.com/antonovmike/ruuz_bot_python/blob/main/Screenshot.png)
 
 (venv)
 ```commandline
