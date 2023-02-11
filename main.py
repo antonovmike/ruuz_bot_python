@@ -62,6 +62,6 @@ def callback_inline(call):
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true')
     if call.data == "case_genitive":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true')
-
+3
 
 bot.polling(none_stop=True, interval=1)
