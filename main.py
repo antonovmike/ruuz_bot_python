@@ -11,16 +11,22 @@ bot = telebot.TeleBot(env[:index])
 
 @bot.message_handler(content_types=['text'])
 def start(message):
+    mainmenu = types.InlineKeyboardMarkup()
+    conversation = types.InlineKeyboardButton(text='Общение', callback_data='conversation')
+    grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
+    help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
+    mainmenu.add(conversation, grammar, help)
+    bot.send_message(chat_id=message.chat.id, text='Главное меню', reply_markup=mainmenu)
     # kb = [[types.KeyboardButton('/command1')],
     #       [types.KeyboardButton('/command2')]]
     # kb_markup = types.ReplyKeyboardMarkup(True)
     # bot.send_message(chat_id=message.chat_id, text="your message", reply_markup=kb_markup)
-    if message.text:
-        mainmenu = types.InlineKeyboardMarkup()
-        key1 = types.InlineKeyboardButton(text='Общение', callback_data='key1')
-        key2 = types.InlineKeyboardButton(text='Грамматика', callback_data='key2')
-        mainmenu.add(key1, key2)
-        bot.send_message(chat_id=message.chat.id, text='Главное меню', reply_markup=mainmenu)
+    # if message.text:
+    #     mainmenu = types.InlineKeyboardMarkup()
+    #     key1 = types.InlineKeyboardButton(text='Общение', callback_data='key1')
+    #     key2 = types.InlineKeyboardButton(text='Грамматика', callback_data='key2')
+    #     mainmenu.add(key1, key2)
+    #     bot.send_message(chat_id=message.chat.id, text='Главное меню', reply_markup=mainmenu)
         # keyboard = types.InlineKeyboardMarkup()
         # key_greetings = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='greetings')
         # keyboard.add(key_greetings)
@@ -40,31 +46,26 @@ def start(message):
 def callback_inline(call):
     if call.data == "mainmenu":
         mainmenu = types.InlineKeyboardMarkup()
-        key1 = types.InlineKeyboardButton(text='Общение', callback_data='key1')
-        key2 = types.InlineKeyboardButton(text='Грамматика', callback_data='key2')
-        mainmenu.add(key1, key2)
+        conversation = types.InlineKeyboardButton(text='Общение', callback_data='conversation')
+        grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
+        help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
+        mainmenu.add(conversation, grammar, help)
         bot.send_message(chat_id=call.message.chat.id, text='Главное меню', reply_markup=mainmenu)
-        # bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=mainmenu)
-        # bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=mainmenu)
-    elif call.data == "key1":
+    elif call.data == "conversation":
         next_menu = types.InlineKeyboardMarkup()
-        key3 = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='key3')
-        txt = Path('dictionaries/greetings').read_text()
-        bot.send_message(call.message.chat.id, txt)
+        greetings = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='greetings')
+        how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you?', callback_data='how_are_you')
+        by = types.InlineKeyboardButton(text='До свидания / Goodby', callback_data='by')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
-        next_menu.add(key3, back)
+        next_menu.add(greetings, how_are_you, by, back)
         bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
-    elif call.data == "key2":
+    elif call.data == "grammar":
         next_menu2 = types.InlineKeyboardMarkup()
-        key4 = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='key4')
+        time_verbs = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='time_verbs')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
-        next_menu2.add(key4, back)
+        next_menu2.add(time_verbs, back)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=next_menu2)
-
-
-def callback_worker(call):
-    if call.data == "key3":
+    if call.data == "greetings":
         txt = Path('dictionaries/greetings').read_text()
         bot.send_message(call.message.chat.id, txt)
     if call.data == "how_are_you":
@@ -73,11 +74,11 @@ def callback_worker(call):
     if call.data == "by":
         txt = Path('dictionaries/by').read_text()
         bot.send_message(call.message.chat.id, txt)
-    if call.data == "time_verbs":
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
     if call.data == "help":
         txt = Path('dictionaries/help').read_text()
         bot.send_message(call.message.chat.id, txt)
+    if call.data == "time_verbs":
+        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
 
 
 bot.polling(none_stop=True, interval=1)
