@@ -1,0 +1,4 @@
+01 ASSALOM ALEYKUM - вежливое приветствие\n\nVAALEYKUM ASSALOM - вежливый ответ на приветствие\n\nSALOM - неформальное приветствие, используется только в отношении хороших знакомых
+02 YAXSHIMI SIZ? - как Ваши дела?\n\nTAZUVMI SIZ? - как Ваши дела?\n\nISHLARINGIZ QALAY? - как твои дела?
+03 HA YAXSHI, RAHMAT. SIZDA CHI? - Хорошо, спасибо. А у Вас?\n\nMEN YAXSHIMAN. RAHMAT! SIZCHI? - Хорошо, спасибо, а Ваши?
+04 KO’RISHKUNCHA / KO’RISHKUNCHA XAYR - до свидания\n\nXAYR - пока\n\nUCHRASHUVGACHA/UCHRASHAMIZ - увидимся\n\nSAGIBOLING - пока / будьте здоровы
