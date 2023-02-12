@@ -4,9 +4,28 @@ from pathlib import Path
 MENU_HEADING = 'Вернуться в главное меню'
 HEADING = 'Русско-Узбекский разговорник'
 
-HELP = Path('dictionaries/help').read_text()
+# HELP OR ABOUT
+HELP_TXT = Path('dictionaries/help').read_text()
 
-uz_verb_forms_png = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true'
-pronoun_png = 'https://github.com/antonovmike/ruuz_bot_python/blob/main/pictures/pronoun.png?raw=true'
-cases_png = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true'
-case_genitive_png = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true'
+# CONVERSATION
+GREETINGS_TXT = Path('dictionaries/greetings').read_text()
+HOW_ARE_YOU_TXT = Path('dictionaries/how_are_you').read_text()
+BY_TXT = Path('dictionaries/by').read_text()
+# FOOD
+BAKED_GOODS_TXT = Path('dictionaries/food_baked_goods').read_text()
+BERRIES_TXT = Path('dictionaries/food_berries').read_text()
+BEVERAGES_TXT = Path('dictionaries/food_beverages').read_text()
+FRUITS_TXT = Path('dictionaries/food_fruits').read_text()
+GROATS_TXT = Path('dictionaries/food_groats').read_text()
+MEAL_TXT = Path('dictionaries/food_meal').read_text()
+MEAT_TXT = Path('dictionaries/food_meat').read_text()
+MILK_TXT = Path('dictionaries/food_milk').read_text()
+MISC_TXT = Path('dictionaries/food_misc').read_text()
+SPICE_TXT = Path('dictionaries/food_spice').read_text()
+VEGETABLES_TXT = Path('dictionaries/food_vegetables').read_text()
+
+# GRAMMAR
+UZ_VERB_FORMS_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true'
+PRONOUN_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/main/pictures/pronoun.png?raw=true'
+CASES_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true'
+CASE_GENITIVE_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true'

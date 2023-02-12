@@ -23,3 +23,11 @@ class BackToMainMenu:
         go_back = types.InlineKeyboardButton(text='Жмяк!', callback_data='mainmenu')
         back_to_mainmenu.add(go_back)
         return back_to_mainmenu
+
+
+# class SubMenu(list):
+#     def sub_menu_creator(self, list_menu: []):
+#         sub_menu = types.InlineKeyboardMarkup()
+#         for i in list_menu:
+#             sub_menu.add(i-1)
+#         return sub_menu

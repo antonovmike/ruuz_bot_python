@@ -9,8 +9,6 @@ pip install pytelegrambotapi
 pip install aiogram
 ```
 
-@bot.message_handler(content_types=['text', 'document', 'audio'])
-
 https://github.com/eternnoir/pyTelegramBotAPI
 
 https://core.telegram.org/bots/api#markdownv2-style
