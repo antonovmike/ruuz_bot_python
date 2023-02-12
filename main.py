@@ -27,9 +27,8 @@ def callback_inline(call):
         greetings = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='greetings')
         how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you?', callback_data='how_are_you')
         by = types.InlineKeyboardButton(text='До свидания / Goodby', callback_data='by')
-        sub_menu.add(greetings)
-        sub_menu.add(how_are_you)
-        sub_menu.add(by)
+        list_of_buttons = [greetings, how_are_you, by]
+        for i in list_of_buttons: sub_menu.add(i)
         sub_menu.add(back_1)
         bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # FOOD
@@ -59,10 +58,8 @@ def callback_inline(call):
         cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
         pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
-        sub_menu.add(time_verbs)
-        sub_menu.add(pronoun)
-        sub_menu.add(cases)
-        sub_menu.add(case_genitive)
+        list_of_buttons = [time_verbs, cases, case_genitive, pronoun]
+        for i in list_of_buttons: sub_menu.add(i)
         sub_menu.add(back_1)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 
