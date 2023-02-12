@@ -19,6 +19,7 @@ def start(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 # MAIN MENU
+    back_1 = types.InlineKeyboardButton(text=MENU_HEADING, callback_data='mainmenu')
     if call.data == "mainmenu":
         mainmenu = MainMenu()
         bot.edit_message_text(HEADING, call.message.chat.id, call.message.message_id, reply_markup=mainmenu.main_menu())
@@ -28,12 +29,11 @@ def callback_inline(call):
         greetings = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='greetings')
         how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you?', callback_data='how_are_you')
         by = types.InlineKeyboardButton(text='До свидания / Goodby', callback_data='by')
-        back = types.InlineKeyboardButton(text=MENU_HEADING, callback_data='mainmenu')
         next_menu.add(greetings)
         next_menu.add(how_are_you)
         next_menu.add(by)
-        next_menu.add(back)
-        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu) #, parse_mode='MarkdownV2'
+        next_menu.add(back_1)
+        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # FOOD
     elif call.data == "food":
         next_menu = types.InlineKeyboardMarkup()
@@ -48,13 +48,12 @@ def callback_inline(call):
         groats = types.InlineKeyboardButton(text='Крупа', callback_data='groats')
         milk = types.InlineKeyboardButton(text='Молочная продукция', callback_data='milk')
         spice = types.InlineKeyboardButton(text='Специи', callback_data='spice')
-        back = types.InlineKeyboardButton(text=MENU_HEADING, callback_data='mainmenu')
         next_menu.add(vegetables, fruits, berries)
         next_menu.add(meat, spice)
         next_menu.add(milk, baked_goods)
         next_menu.add(beverages, groats)
         next_menu.add(meal, misc)
-        next_menu.add(back)
+        next_menu.add(back_1)
         bot.edit_message_text('Тема: Еда / Oqat', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # GRAMMAR
     elif call.data == "grammar":
@@ -63,93 +62,74 @@ def callback_inline(call):
         cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
         pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
-        back = types.InlineKeyboardButton(text=MENU_HEADING, callback_data='mainmenu')
         next_menu.add(time_verbs)
         next_menu.add(pronoun)
         next_menu.add(cases)
         next_menu.add(case_genitive)
-        next_menu.add(back)
+        next_menu.add(back_1)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # CONVERSATION
+    back_2 = BackToMainMenu().back_to_main_menu()
     if call.data == "greetings":
         bot.send_message(call.message.chat.id, GREETINGS_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "how_are_you":
         bot.send_message(call.message.chat.id, HOW_ARE_YOU_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "by":
         bot.send_message(call.message.chat.id, BY_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
 # HELP OR ABOUT
     if call.data == "help":
         bot.send_message(call.message.chat.id, HELP_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
 # GRAMMAR
     if call.data == "time_verbs":
         bot.send_photo(call.message.chat.id, UZ_VERB_FORMS_PNG)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "pronoun":
         bot.send_photo(call.message.chat.id, PRONOUN_PNG)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "cases":
         bot.send_photo(call.message.chat.id, CASES_PNG)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "case_genitive":
         bot.send_photo(call.message.chat.id, CASE_GENITIVE_PNG)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
 # FOOD
     if call.data == "vegetables":
         bot.send_message(call.message.chat.id, VEGETABLES_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "fruits":
         bot.send_message(call.message.chat.id, FRUITS_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "berries":
         bot.send_message(call.message.chat.id, BERRIES_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "meat":
         bot.send_message(call.message.chat.id, MEAT_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "baked_goods":
         bot.send_message(call.message.chat.id, BAKED_GOODS_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back, parse_mode='MarkdownV2')
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "misc":
         bot.send_message(call.message.chat.id, MISC_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "beverages":
         bot.send_message(call.message.chat.id, BEVERAGES_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "groats":
         bot.send_message(call.message.chat.id, GROATS_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "meal":
         bot.send_message(call.message.chat.id, MEAL_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "milk":
         bot.send_message(call.message.chat.id, MILK_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "spice":
         bot.send_message(call.message.chat.id, SPICE_TXT)
-        back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
 
 
 bot.polling(none_stop=True, interval=0)
