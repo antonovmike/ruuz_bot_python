@@ -8,15 +8,15 @@ file.close()
 index = len(env) - 1
 bot = telebot.TeleBot(env[:index])
 
-# @bot.message_handler()
+
 class MainMenu:
+    # def __init__(self):
+    #     self. =
     def back_to_main_menu(self):
         back_to_mainmenu = types.InlineKeyboardMarkup()
         go_back = types.InlineKeyboardButton(text='Жмяк!', callback_data='mainmenu')
         back_to_mainmenu.add(go_back)
-        # return types.InlineKeyboardButton
-        # return back_to_mainmenu
-        # bot.send_message(chat_id=call.message.chat.id, text='Вернуться в главное меню', reply_markup=back_to_mainmenu)
+        return back_to_mainmenu
 
 
 @bot.message_handler(content_types=['text'])
@@ -111,12 +111,8 @@ def callback_inline(call):
     if call.data == "help":
         txt = Path('dictionaries/help').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back_to_mainmenu = types.InlineKeyboardMarkup()
-        go_back = types.InlineKeyboardButton(text='Жмяк!', callback_data='mainmenu')
-        back_to_mainmenu.add(go_back)
-        # back = MainMenu()
-        # back.back_to_main_menu("TEST")
-        bot.send_message(chat_id=call.message.chat.id, text='Вернуться в главное меню', reply_markup=back_to_mainmenu)
+        back = MainMenu()
+        bot.send_message(chat_id=call.message.chat.id, text='Вернуться в главное меню', reply_markup=back.back_to_main_menu())
 # GRAMMAR
     if call.data == "time_verbs":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
