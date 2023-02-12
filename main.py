@@ -55,6 +55,8 @@ def callback_inline(call):
         bot.edit_message_text(FOOD_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # TRAVEL
     elif call.data == "travel":
+        taxi = types.InlineKeyboardButton(text='Такси / Taxi / Taksi', callback_data='taxi')
+        sub_menu.add(taxi)
         sub_menu.add(back_1)
         bot.edit_message_text(TRAVEL_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # GRAMMAR
@@ -136,6 +138,9 @@ def callback_inline(call):
     if call.data == "spice":
         bot.send_message(call.message.chat.id, SPICE_TXT)
         bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
-
+# TRAVEL
+    if call.data == "taxi":
+        bot.send_message(call.message.chat.id, TRAVEL_TXT)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
 
 bot.polling(none_stop=True, interval=0)
