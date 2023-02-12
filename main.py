@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 from pathlib import Path
 
+# TELEGRAM TOKEN
 file = open('./test.env')
 env = file.readlines()[0]
 file.close()
@@ -35,13 +36,20 @@ class BackToMainMenu:
 
 
 menu_heading = 'Вернуться в главное меню'
-
+heading = 'Русско-Узбекский разговорник'
 
 @bot.message_handler(content_types=['text'])
 def start(message):
-    heading = 'Русско-Узбекский разговорник'
     mainmenu = MainMenu()
     bot.send_message(chat_id=message.chat.id, text=heading, reply_markup=mainmenu.main_menu())
+
+
+class SubMenu(list):
+    def sub_menu_creator(self, list_menu: []):
+        sub_menu = types.InlineKeyboardMarkup()
+        for i in list_menu:
+            sub_menu.add(i-1)
+        return sub_menu
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -49,7 +57,7 @@ def callback_inline(call):
 # MAIN MENU
     if call.data == "mainmenu":
         mainmenu = MainMenu()
-        bot.edit_message_text('Русско-Узбекский разговорник', call.message.chat.id, call.message.message_id, reply_markup=mainmenu.main_menu())
+        bot.edit_message_text(heading, call.message.chat.id, call.message.message_id, reply_markup=mainmenu.main_menu())
 # CONVERSATION
     elif call.data == "conversation":
         next_menu = types.InlineKeyboardMarkup()
@@ -61,7 +69,7 @@ def callback_inline(call):
         next_menu.add(how_are_you)
         next_menu.add(by)
         next_menu.add(back)
-        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
+        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu) #, parse_mode='MarkdownV2'
 # FOOD
     elif call.data == "food":
         next_menu = types.InlineKeyboardMarkup()
@@ -78,8 +86,9 @@ def callback_inline(call):
         spice = types.InlineKeyboardButton(text='Специи', callback_data='spice')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
         next_menu.add(vegetables, fruits, berries)
-        next_menu.add(meat, spice, milk)
-        next_menu.add(baked_goods, beverages, groats)
+        next_menu.add(meat, spice)
+        next_menu.add(milk, baked_goods)
+        next_menu.add(beverages, groats)
         next_menu.add(meal, misc)
         next_menu.add(back)
         bot.edit_message_text('Тема: Еда / Oqat', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
@@ -89,8 +98,10 @@ def callback_inline(call):
         time_verbs = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='time_verbs')
         cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
+        pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
         back = types.InlineKeyboardButton(text=menu_heading, callback_data='mainmenu')
         next_menu.add(time_verbs)
+        next_menu.add(pronoun)
         next_menu.add(cases)
         next_menu.add(case_genitive)
         next_menu.add(back)
@@ -99,93 +110,97 @@ def callback_inline(call):
     if call.data == "greetings":
         txt = Path('dictionaries/greetings').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "how_are_you":
         txt = Path('dictionaries/how_are_you').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "by":
         txt = Path('dictionaries/by').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 # HELP
     if call.data == "help":
         txt = Path('dictionaries/help').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 # GRAMMAR
     if call.data == "time_verbs":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
+    if call.data == "pronoun":
+        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/pronoun.png?raw=true')
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "cases":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true')
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "case_genitive":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true')
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 # FOOD
     if call.data == "vegetables":
         txt = Path('dictionaries/food_vegetables').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "fruits":
         txt = Path('dictionaries/food_fruits').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "berries":
         txt = Path('dictionaries/food_berries').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "meat":
         txt = Path('dictionaries/food_meat').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "baked_goods":
         txt = Path('dictionaries/food_baked_goods').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back, parse_mode='MarkdownV2')
     if call.data == "misc":
         txt = Path('dictionaries/food_misc').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "beverages":
         txt = Path('dictionaries/food_beverages').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "groats":
         txt = Path('dictionaries/food_groats').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "meal":
         txt = Path('dictionaries/food_meal').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "milk":
         txt = Path('dictionaries/food_milk').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "spice":
         txt = Path('dictionaries/food_spice').read_text()
         bot.send_message(call.message.chat.id, txt)
-        back = BackToMainMenu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back.back_to_main_menu())
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 
 
 bot.polling(none_stop=True, interval=0)
