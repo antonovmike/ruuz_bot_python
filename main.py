@@ -33,7 +33,10 @@ def callback_inline(call):
         food = types.InlineKeyboardButton(text='Еда / Ovqat', callback_data='food')
         grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
         help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
-        mainmenu.add(conversation, food, grammar, help)
+        mainmenu.add(conversation)
+        mainmenu.add(food)
+        mainmenu.add(grammar)
+        mainmenu.add(help)
         bot.send_message(chat_id=call.message.chat.id, text='Главное меню', reply_markup=mainmenu)
     elif call.data == "conversation":
         next_menu = types.InlineKeyboardMarkup()
@@ -48,9 +51,12 @@ def callback_inline(call):
         vegetables = types.InlineKeyboardButton(text='Овощи / Sabzavotlar', callback_data='vegetables')
         fruits = types.InlineKeyboardButton(text='Фрукты / Mevalar', callback_data='fruits')
         berries = types.InlineKeyboardButton(text='Ягоды / Rezavorlar', callback_data='berries')
+        meat = types.InlineKeyboardButton(text='Мясо / Go’sh', callback_data='meat')
+        baked_goods = types.InlineKeyboardButton(text='Выпечка / ???', callback_data='baked_goods')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
-        next_menu.add(vegetables, fruits, berries, back)
-        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
+        next_menu.add(vegetables, fruits, berries, meat, baked_goods)
+        next_menu.add(back)
+        bot.edit_message_text('Тема: Еда / Oqat', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
     elif call.data == "grammar":
         next_menu2 = types.InlineKeyboardMarkup()
         time_verbs = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='time_verbs')
@@ -88,6 +94,12 @@ def callback_inline(call):
         bot.send_message(call.message.chat.id, txt)
     if call.data == "berries":
         txt = Path('dictionaries/food_berries').read_text()
+        bot.send_message(call.message.chat.id, txt)
+    if call.data == "meat":
+        txt = Path('dictionaries/food_meat').read_text()
+        bot.send_message(call.message.chat.id, txt)
+    if call.data == "baked_goods":
+        txt = Path('dictionaries/food_baked_goods').read_text()
         bot.send_message(call.message.chat.id, txt)
 
 
