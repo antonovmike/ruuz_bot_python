@@ -1,12 +1,13 @@
 from telebot import types
+from constants import *
 
 class MainMenu:
     def main_menu(self):
         mainmenu = types.InlineKeyboardMarkup()
-        conversation = types.InlineKeyboardButton(text='Общение', callback_data='conversation')
-        food = types.InlineKeyboardButton(text='Еда / Ovqat', callback_data='food')
-        grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
-        help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
+        conversation = types.InlineKeyboardButton(text=CONVERSATION_HDNG, callback_data='conversation')
+        food = types.InlineKeyboardButton(text=FOOD_HEADING, callback_data='food')
+        grammar = types.InlineKeyboardButton(text=GRAMMAR_HEADING, callback_data='grammar')
+        help = types.InlineKeyboardButton(text=ABOUT_HEADING, callback_data='help')
         # Horizontal menu
         # mainmenu.add(conversation, food, grammar, help)
         # Vertical menu

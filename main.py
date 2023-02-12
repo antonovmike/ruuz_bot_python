@@ -24,33 +24,33 @@ def callback_inline(call):
         bot.edit_message_text(HEADING, call.message.chat.id, call.message.message_id, reply_markup=mainmenu.main_menu())
 # CONVERSATION
     elif call.data == "conversation":
-        greetings = types.InlineKeyboardButton(text='Приветствие / Greeting', callback_data='greetings')
-        how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you?', callback_data='how_are_you')
-        by = types.InlineKeyboardButton(text='До свидания / Goodby', callback_data='by')
+        greetings = types.InlineKeyboardButton(text='Приветствие / Greeting / Salomlashish', callback_data='greetings')
+        how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you? / Yaxshimi siz?', callback_data='how_are_you')
+        by = types.InlineKeyboardButton(text='До свидания / Goodby / Ko’rishkuncha', callback_data='by')
         list_of_buttons = [greetings, how_are_you, by]
         for i in list_of_buttons: sub_menu.add(i)
         sub_menu.add(back_1)
-        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
+        bot.edit_message_text(CONVERSATION_HDNG, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # FOOD
     elif call.data == "food":
-        vegetables = types.InlineKeyboardButton(text='Овощи / Sabzavotlar', callback_data='vegetables')
-        fruits = types.InlineKeyboardButton(text='Фрукты / Mevalar', callback_data='fruits')
-        berries = types.InlineKeyboardButton(text='Ягоды / Rezavorlar', callback_data='berries')
-        meat = types.InlineKeyboardButton(text='Мясо / Go’sh', callback_data='meat')
-        beverages = types.InlineKeyboardButton(text='Напитки', callback_data='beverages')
-        meal = types.InlineKeyboardButton(text='Приём пищи', callback_data='meal')
-        baked_goods = types.InlineKeyboardButton(text='Выпечка / Novoy hona', callback_data='baked_goods')
-        misc = types.InlineKeyboardButton(text='Разное', callback_data='misc')
-        groats = types.InlineKeyboardButton(text='Крупа', callback_data='groats')
-        milk = types.InlineKeyboardButton(text='Молочная продукция', callback_data='milk')
-        spice = types.InlineKeyboardButton(text='Специи', callback_data='spice')
+        vegetables = types.InlineKeyboardButton(text='Овощи / Vegetables / Sabzavotlar', callback_data='vegetables')
+        fruits = types.InlineKeyboardButton(text='Фрукты / Fruits / Mevalar', callback_data='fruits')
+        berries = types.InlineKeyboardButton(text='Ягоды / Berries / Rezavorlar', callback_data='berries')
+        meat = types.InlineKeyboardButton(text='Мясо / Meat / Go’sh', callback_data='meat')
+        beverages = types.InlineKeyboardButton(text='Напитки / Beverages', callback_data='beverages')
+        meal = types.InlineKeyboardButton(text='Приём пищи / Meal', callback_data='meal')
+        baked_goods = types.InlineKeyboardButton(text='Выпечка / Bake / Novoy hona', callback_data='baked_goods')
+        misc = types.InlineKeyboardButton(text='Разное / Miscellaneous', callback_data='misc')
+        groats = types.InlineKeyboardButton(text='Крупа / Groats', callback_data='groats')
+        milk = types.InlineKeyboardButton(text='Молочная продукция / Milk products', callback_data='milk')
+        spice = types.InlineKeyboardButton(text='Специи / Spice / Ziravorlar', callback_data='spice')
         sub_menu.add(vegetables, fruits, berries)
         sub_menu.add(meat, spice)
         sub_menu.add(milk, baked_goods)
         sub_menu.add(beverages, groats)
         sub_menu.add(meal, misc)
         sub_menu.add(back_1)
-        bot.edit_message_text('Тема: Еда / Oqat', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
+        bot.edit_message_text(FOOD_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # GRAMMAR
     elif call.data == "grammar":
         sub_menu = types.InlineKeyboardMarkup()
@@ -61,7 +61,7 @@ def callback_inline(call):
         list_of_buttons = [time_verbs, cases, case_genitive, pronoun]
         for i in list_of_buttons: sub_menu.add(i)
         sub_menu.add(back_1)
-        bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
+        bot.edit_message_text(GRAMMAR_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 
     back_2 = BackToMainMenu().back_to_main_menu()
 

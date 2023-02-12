@@ -1,8 +1,12 @@
 from pathlib import Path
 
-
-MENU_HEADING = 'Вернуться в главное меню'
-HEADING = 'Русско-Узбекский разговорник'
+# HEADINGS
+MENU_HEADING = 'Главное меню / Main menu'
+HEADING = 'Выберите тему / Choose a topic'
+CONVERSATION_HDNG = 'Общение / Conversation / Suxbat'
+FOOD_HEADING = 'Еда / Food / Ovqat'
+GRAMMAR_HEADING = 'Грамматика / Grammar / Grammatika'
+ABOUT_HEADING = 'Про этот бот / About this bot / Bu bot haqida'
 
 # HELP OR ABOUT
 HELP_TXT = Path('dictionaries/help').read_text()
