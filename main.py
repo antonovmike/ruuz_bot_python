@@ -1,13 +1,10 @@
 import telebot
 from menu import *
 from constants import *
+from token_env import token
 
-# TELEGRAM TOKEN
-file = open('./test.env')
-env = file.readlines()[0]
-file.close()
-index = len(env) - 1
-bot = telebot.TeleBot(env[:index])
+
+bot = telebot.TeleBot(token)
 
 
 @bot.message_handler(content_types=['text'])
