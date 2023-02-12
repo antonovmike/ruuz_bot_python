@@ -6,6 +6,7 @@ class MainMenu:
         mainmenu = types.InlineKeyboardMarkup()
         conversation = types.InlineKeyboardButton(text=CONVERSATION_HDNG, callback_data='conversation')
         food = types.InlineKeyboardButton(text=FOOD_HEADING, callback_data='food')
+        travel = types.InlineKeyboardButton(text=TRAVEL_HEADING, callback_data='travel')
         grammar = types.InlineKeyboardButton(text=GRAMMAR_HEADING, callback_data='grammar')
         help = types.InlineKeyboardButton(text=ABOUT_HEADING, callback_data='help')
         # Horizontal menu
@@ -13,6 +14,7 @@ class MainMenu:
         # Vertical menu
         mainmenu.add(conversation)
         mainmenu.add(food)
+        mainmenu.add(travel)
         mainmenu.add(grammar)
         mainmenu.add(help)
         return mainmenu

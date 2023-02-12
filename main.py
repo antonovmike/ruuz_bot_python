@@ -44,21 +44,28 @@ def callback_inline(call):
         groats = types.InlineKeyboardButton(text='Крупа / Groats', callback_data='groats')
         milk = types.InlineKeyboardButton(text='Молочная продукция / Milk products', callback_data='milk')
         spice = types.InlineKeyboardButton(text='Специи / Spice / Ziravorlar', callback_data='spice')
-        sub_menu.add(vegetables, fruits, berries)
+        sub_menu.add(vegetables)
+        sub_menu.add(fruits, berries)
         sub_menu.add(meat, spice)
-        sub_menu.add(milk, baked_goods)
+        sub_menu.add(milk)
+        sub_menu.add(baked_goods)
         sub_menu.add(beverages, groats)
         sub_menu.add(meal, misc)
         sub_menu.add(back_1)
         bot.edit_message_text(FOOD_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
+# TRAVEL
+    elif call.data == "travel":
+        sub_menu.add(back_1)
+        bot.edit_message_text(TRAVEL_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
 # GRAMMAR
     elif call.data == "grammar":
         sub_menu = types.InlineKeyboardMarkup()
         time_verbs = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='time_verbs')
-        cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
-        case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
+        some_verbs = types.InlineKeyboardButton(text='Некоторые глаголы / Some verbs', callback_data='some_verbs')
+        cases = types.InlineKeyboardButton(text='Падежи / Cases / Kelishiklar', callback_data='cases')
+        case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive / Qaratqich kelishikgi', callback_data='case_genitive')
         pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
-        list_of_buttons = [time_verbs, cases, case_genitive, pronoun]
+        list_of_buttons = [time_verbs, some_verbs, cases, case_genitive, pronoun]
         for i in list_of_buttons: sub_menu.add(i)
         sub_menu.add(back_1)
         bot.edit_message_text(GRAMMAR_HEADING, call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
@@ -82,6 +89,9 @@ def callback_inline(call):
 # GRAMMAR
     if call.data == "time_verbs":
         bot.send_photo(call.message.chat.id, UZ_VERB_FORMS_PNG)
+        bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
+    if call.data == "some_verbs":
+        bot.send_photo(call.message.chat.id, SOME_VERBS)
         bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
     if call.data == "pronoun":
         bot.send_photo(call.message.chat.id, PRONOUN_PNG)
