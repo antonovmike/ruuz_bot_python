@@ -13,3 +13,4 @@ pip install aiogram
 
 https://github.com/eternnoir/pyTelegramBotAPI
 
+https://core.telegram.org/bots/api#markdownv2-style

@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 from pathlib import Path
 
+# TELEGRAM TOKEN
 file = open('./test.env')
 env = file.readlines()[0]
 file.close()
@@ -18,12 +19,13 @@ class MainMenu:
         food = types.InlineKeyboardButton(text='Еда / Ovqat', callback_data='food')
         grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
         help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
+        # Horizontal menu
         # mainmenu.add(conversation, food, grammar, help)
+        # Vertical menu
         mainmenu.add(conversation)
         mainmenu.add(food)
         mainmenu.add(grammar)
         mainmenu.add(help)
-        # heading = 'Русско-Узбекский разговорник'
         return mainmenu
 
 
@@ -44,6 +46,14 @@ def start(message):
     bot.send_message(chat_id=message.chat.id, text=heading, reply_markup=mainmenu.main_menu())
 
 
+class SubMenu(list):
+    def sub_menu_creator(self, list_menu: []):
+        sub_menu = types.InlineKeyboardMarkup()
+        for i in list_menu:
+            sub_menu.add(i-1)
+        return sub_menu
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
 # MAIN MENU
@@ -61,7 +71,7 @@ def callback_inline(call):
         next_menu.add(how_are_you)
         next_menu.add(by)
         next_menu.add(back)
-        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
+        bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu) #, parse_mode='MarkdownV2'
 # FOOD
     elif call.data == "food":
         next_menu = types.InlineKeyboardMarkup()
@@ -89,10 +99,10 @@ def callback_inline(call):
         time_verbs = types.InlineKeyboardButton(text='Время глаголов / Verbs tenses', callback_data='time_verbs')
         cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
+        pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
         back = types.InlineKeyboardButton(text=menu_heading, callback_data='mainmenu')
-        next_menu.add(time_verbs)
-        next_menu.add(cases)
-        next_menu.add(case_genitive)
+        next_menu.add(time_verbs, pronoun)
+        next_menu.add(cases, case_genitive)
         next_menu.add(back)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # CONVERSATION
@@ -120,6 +130,10 @@ def callback_inline(call):
 # GRAMMAR
     if call.data == "time_verbs":
         bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
+        back = BackToMainMenu().back_to_main_menu()
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
+    if call.data == "pronoun":
+        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/pronoun.png?raw=true')
         back = BackToMainMenu().back_to_main_menu()
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "cases":
@@ -155,7 +169,7 @@ def callback_inline(call):
         txt = Path('dictionaries/food_baked_goods').read_text()
         bot.send_message(call.message.chat.id, txt)
         back = BackToMainMenu().back_to_main_menu()
-        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
+        bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back, parse_mode='MarkdownV2')
     if call.data == "misc":
         txt = Path('dictionaries/food_misc').read_text()
         bot.send_message(call.message.chat.id, txt)
