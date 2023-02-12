@@ -1,6 +1,5 @@
 from telebot import types
 
-
 class MainMenu:
     def main_menu(self):
         mainmenu = types.InlineKeyboardMarkup()
