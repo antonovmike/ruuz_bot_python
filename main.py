@@ -10,20 +10,19 @@ bot = telebot.TeleBot(env[:index])
 
 
 class MainMenu:
-    # def __init__(self):
-    #     self. =
     def main_menu(self):
         mainmenu = types.InlineKeyboardMarkup()
         conversation = types.InlineKeyboardButton(text='Общение', callback_data='conversation')
         food = types.InlineKeyboardButton(text='Еда / Ovqat', callback_data='food')
         grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
         help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
+        # Horizontal menu
         # mainmenu.add(conversation, food, grammar, help)
+        # Vertical menu
         mainmenu.add(conversation)
         mainmenu.add(food)
         mainmenu.add(grammar)
         mainmenu.add(help)
-        # heading = 'Русско-Узбекский разговорник'
         return mainmenu
 
 
