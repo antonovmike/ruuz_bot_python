@@ -18,9 +18,10 @@ def start(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
-# MAIN MENU
     sub_menu = types.InlineKeyboardMarkup()
     back_1 = types.InlineKeyboardButton(text=MENU_HEADING, callback_data='mainmenu')
+
+# MAIN MENU
     if call.data == "mainmenu":
         mainmenu = MainMenu()
         bot.edit_message_text(HEADING, call.message.chat.id, call.message.message_id, reply_markup=mainmenu.main_menu())
@@ -67,8 +68,10 @@ def callback_inline(call):
         sub_menu.add(case_genitive)
         sub_menu.add(back_1)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=sub_menu)
-# CONVERSATION
+
     back_2 = BackToMainMenu().back_to_main_menu()
+
+# CONVERSATION
     if call.data == "greetings":
         bot.send_message(call.message.chat.id, GREETINGS_TXT)
         bot.send_message(chat_id=call.message.chat.id, text=MENU_HEADING, reply_markup=back_2)
