@@ -16,7 +16,11 @@ def start(message):
     food = types.InlineKeyboardButton(text='Еда / Ovqat', callback_data='food')
     grammar = types.InlineKeyboardButton(text='Грамматика', callback_data='grammar')
     help = types.InlineKeyboardButton(text='Об этом боте', callback_data='help')
-    mainmenu.add(conversation, food, grammar, help)
+    # mainmenu.add(conversation, food, grammar, help)
+    mainmenu.add(conversation)
+    mainmenu.add(food)
+    mainmenu.add(grammar)
+    mainmenu.add(help)
     heading = 'Русско-Узбекский разговорник'
     bot.send_message(chat_id=message.chat.id, text=heading, reply_markup=mainmenu)
 
