@@ -101,8 +101,10 @@ def callback_inline(call):
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
         pronoun = types.InlineKeyboardButton(text='Местоимения / Pronoun / Olmoshlar', callback_data='pronoun')
         back = types.InlineKeyboardButton(text=menu_heading, callback_data='mainmenu')
-        next_menu.add(time_verbs, pronoun)
-        next_menu.add(cases, case_genitive)
+        next_menu.add(time_verbs)
+        next_menu.add(pronoun)
+        next_menu.add(cases)
+        next_menu.add(case_genitive)
         next_menu.add(back)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # CONVERSATION
