@@ -38,7 +38,10 @@ def callback_inline(call):
         mainmenu.add(food)
         mainmenu.add(grammar)
         mainmenu.add(help)
-        bot.send_message(chat_id=call.message.chat.id, text='Главное меню', reply_markup=mainmenu)
+        # Sends new menu
+        # bot.send_message(chat_id=call.message.chat.id, text='Главное меню', reply_markup=mainmenu)
+        # Replace previous menu with called one
+        bot.edit_message_text('Главное меню', call.message.chat.id, call.message.message_id, reply_markup=mainmenu)
 # CONVERSATION
     elif call.data == "conversation":
         next_menu = types.InlineKeyboardMarkup()
@@ -46,7 +49,9 @@ def callback_inline(call):
         how_are_you = types.InlineKeyboardButton(text='Как ваши дела? / How are you?', callback_data='how_are_you')
         by = types.InlineKeyboardButton(text='До свидания / Goodby', callback_data='by')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
-        next_menu.add(greetings, how_are_you, by)
+        next_menu.add(greetings)
+        next_menu.add(how_are_you)
+        next_menu.add(by)
         next_menu.add(back)
         bot.edit_message_text('Тема: Общение', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # FOOD
@@ -77,7 +82,9 @@ def callback_inline(call):
         cases = types.InlineKeyboardButton(text='Падежи / Cases', callback_data='cases')
         case_genitive = types.InlineKeyboardButton(text='Родительный падеж / Case genitive', callback_data='case_genitive')
         back = types.InlineKeyboardButton(text='В главное меню', callback_data='mainmenu')
-        next_menu.add(time_verbs, cases, case_genitive)
+        next_menu.add(time_verbs)
+        next_menu.add(cases)
+        next_menu.add(case_genitive)
         next_menu.add(back)
         bot.edit_message_text('Тема: Грамматика', call.message.chat.id, call.message.message_id, reply_markup=next_menu)
 # CONVERSATION
