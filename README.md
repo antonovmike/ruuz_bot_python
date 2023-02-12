@@ -1,6 +1,6 @@
 # ruuz_bot_python
 
-![ruuz_bot_python](https://github.com/antonovmike/ruuz_bot_python/blob/main/Screenshot.png?raw=true)
+![ruuz_bot_python](https://github.com/antonovmike/ruuz_bot_python/blob/test/Screenshot.png?raw=true)
 
 (venv)
 ```commandline
