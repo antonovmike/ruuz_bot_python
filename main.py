@@ -1,7 +1,7 @@
 import telebot
-from telebot import types
 from pathlib import Path
 from menu import *
+from constants import *
 
 # TELEGRAM TOKEN
 file = open('./test.env')
@@ -9,10 +9,6 @@ env = file.readlines()[0]
 file.close()
 index = len(env) - 1
 bot = telebot.TeleBot(env[:index])
-
-
-menu_heading = 'Вернуться в главное меню'
-heading = 'Русско-Узбекский разговорник'
 
 
 @bot.message_handler(content_types=['text'])
@@ -107,19 +103,23 @@ def callback_inline(call):
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 # GRAMMAR
     if call.data == "time_verbs":
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true')
+        picture = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true'
+        bot.send_photo(call.message.chat.id, picture)
         back = BackToMainMenu().back_to_main_menu()
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "pronoun":
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/pronoun.png?raw=true')
+        picture = 'https://github.com/antonovmike/ruuz_bot_python/blob/main/pictures/pronoun.png?raw=true'
+        bot.send_photo(call.message.chat.id, picture)
         back = BackToMainMenu().back_to_main_menu()
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "cases":
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true')
+        picture = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/cases.png?raw=true'
+        bot.send_photo(call.message.chat.id, picture)
         back = BackToMainMenu().back_to_main_menu()
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
     if call.data == "case_genitive":
-        bot.send_photo(call.message.chat.id, 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true')
+        picture = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true'
+        bot.send_photo(call.message.chat.id, picture)
         back = BackToMainMenu().back_to_main_menu()
         bot.send_message(chat_id=call.message.chat.id, text=menu_heading, reply_markup=back)
 # FOOD
