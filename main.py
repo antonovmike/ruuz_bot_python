@@ -19,6 +19,10 @@ def start(message):
 def process_step(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     msg = bot.send_message(chat_id=message.chat.id, text='В главное меню: /start')
+# ABOUT
+    if message.text == ABOUT_HEADING:
+        bot.send_message(chat_id=message.chat.id, text=HELP_TXT)
+        bot.register_next_step_handler(msg, process_step)
 # CONVERSATION
     if message.text == CONVERSATION_HDNG:
         markup.add('Приветствие / Greeting / Salomlashish')
