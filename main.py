@@ -28,7 +28,6 @@ def process_step(message):
         markup.add('Приветствие / Greeting / Salomlashish')
         markup.add('Как ваши дела? / How are you? / Yaxshimi siz?')
         markup.add('До свидания / Goodby / Ko’rishkuncha')
-        msg = bot.reply_to(message, '/start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Приветствие / Greeting / Salomlashish':
         bot.send_message(chat_id=message.chat.id, text=GREETINGS_TXT)
@@ -105,7 +104,6 @@ def process_step(message):
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Падежи / Cases / Kelishiklar':
         bot.send_photo(message.chat.id, CASES_PNG)
-        # bot.register_next_step_handler(msg, process_step)
         bot.next_step_backend()
     if message.text == 'Родит. падеж / Case genitive / Qaratqich kelishikgi':
         bot.send_photo(message.chat.id, CASE_GENITIVE_PNG)
