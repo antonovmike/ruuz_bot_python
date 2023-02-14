@@ -15,10 +15,20 @@ def start(message):
     markup.add(ABOUT_HEADING)
     msg = bot.reply_to(message, 'Выберите тему', reply_markup=markup)
     bot.register_next_step_handler(msg, process_step)
+    # bot.register_next_step_handler_by_chat_id(chat_id=message.chat.id, callback)
 
 def process_step(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     msg = bot.send_message(chat_id=message.chat.id, text='В главное меню: /start')
+# MAIN
+    if message.text == MENU_HEADING:
+        # markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+        markup.add(CONVERSATION_HDNG, FOOD_HEADING)
+        markup.add(GRAMMAR_HEADING, TRAVEL_HEADING)
+        markup.add(ABOUT_HEADING)
+        msg = bot.reply_to(message, 'Выберите тему', reply_markup=markup)
+        bot.register_next_step_handler(msg, process_step)
+
 # ABOUT
     if message.text == ABOUT_HEADING:
         bot.send_message(chat_id=message.chat.id, text=HELP_TXT)
@@ -28,6 +38,8 @@ def process_step(message):
         markup.add('Приветствие / Greeting / Salomlashish')
         markup.add('Как ваши дела? / How are you? / Yaxshimi siz?')
         markup.add('До свидания / Goodby / Ko’rishkuncha')
+        markup.add(MENU_HEADING)
+        msg = bot.reply_to(message, 'Обратно в меню: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Приветствие / Greeting / Salomlashish':
         bot.send_message(chat_id=message.chat.id, text=GREETINGS_TXT)
@@ -44,7 +56,8 @@ def process_step(message):
         markup.add('Мясо', 'Напитки', 'Выпечка')
         markup.add('Крупа', 'Молочная продукция')
         markup.add('Специи', 'Приём пищи', 'Разное')
-        msg = bot.reply_to(message, '/start', reply_markup=markup)
+        markup.add(MENU_HEADING)
+        msg = bot.reply_to(message, 'Обратно в меню: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Овощи':
         bot.send_message(chat_id=message.chat.id, text=VEGETABLES_TXT)
@@ -82,7 +95,8 @@ def process_step(message):
 # TRAVEL
     if message.text == TRAVEL_HEADING:
         markup.add('Такси / Taxi / Taksi')
-        msg = bot.reply_to(message, '/start', reply_markup=markup)
+        markup.add(MENU_HEADING)
+        msg = bot.reply_to(message, 'Обратно в меню: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Такси / Taxi / Taksi':
         bot.send_message(chat_id=message.chat.id, text=TRAVEL_TXT)
@@ -94,7 +108,8 @@ def process_step(message):
         markup.add('Падежи / Cases / Kelishiklar')
         markup.add('Родит. падеж / Case genitive / Qaratqich kelishikgi')
         markup.add('Местоимения / Pronoun / Olmoshlar')
-        msg = bot.reply_to(message, '/start', reply_markup=markup)
+        markup.add(MENU_HEADING)
+        msg = bot.reply_to(message, 'Обратно в меню: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Время глаголов / Verbs tenses':
         bot.send_photo(message.chat.id, UZ_VERB_FORMS_PNG)
@@ -111,7 +126,6 @@ def process_step(message):
     if message.text == 'Местоимения / Pronoun / Olmoshlar':
         bot.send_photo(message.chat.id, PRONOUN_PNG)
         bot.register_next_step_handler(msg, process_step)
-
 
 
 bot.polling(none_stop=True, interval=0)
