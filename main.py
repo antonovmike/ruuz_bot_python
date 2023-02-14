@@ -19,7 +19,7 @@ def start(message):
 
 def process_step(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    # msg = bot.send_message(chat_id=message.chat.id, text='Обратно в меню: /start', reply_markup=markup)
+    # msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
 # MAIN
     if message.text == MENU_HEADING:
         markup.add(CONVERSATION_HDNG, FOOD_HEADING)
@@ -27,6 +27,7 @@ def process_step(message):
         markup.add(ABOUT_HEADING)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
+        # bot.register_next_step_handler_by_chat_id(chat_id=, callback=)
 
 # ABOUT
     if message.text == ABOUT_HEADING:
