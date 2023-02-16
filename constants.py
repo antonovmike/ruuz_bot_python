@@ -1,5 +1,9 @@
 from pathlib import Path
 
+# CHOOSE LANGUAGE
+RU_UZ = 'Русский - Узбекский'
+EN_UZ = 'English - Uzbek'
+
 # HEADINGS
 MENU_HEADING = 'Главное меню / Main menu'
 HEADING = 'Выберите тему / Choose a topic'
@@ -8,9 +12,26 @@ FOOD_HEADING = 'Еда / Food / Ovqat'
 GRAMMAR_HEADING = 'Грамматика / Grammar / Grammatika'
 TRAVEL_HEADING = 'Путешестие / Travel'
 ABOUT_HEADING = 'Про этот бот / About this bot / Bu bot haqida'
+# HEADING RU
+MENU_HEADING_RU = 'Главное меню'
+HEADING_RU = 'Выберите тему'
+CONVERSATION_HDNG_RU = 'Общение / Suxbat'
+FOOD_HEADING_RU = 'Еда / Ovqat'
+GRAMMAR_HEADING_RU = 'Грамматика / Grammatika'
+TRAVEL_HEADING_RU = 'Путешестие'
+ABOUT_HEADING_RU = 'Про этот бот / Bu bot haqida'
+# HEADINGS EN
+MENU_HEADING_EN = 'Main menu'
+HEADING_EN = 'Choose a topic'
+CONVERSATION_HDNG_EN = 'Conversation / Suxbat'
+FOOD_HEADING_EN = 'Food / Ovqat'
+GRAMMAR_HEADING_EN = 'Grammar / Grammatika'
+TRAVEL_HEADING_EN = 'Travel'
+ABOUT_HEADING_EN = 'About this bot / Bu bot haqida'
 
 # HELP OR ABOUT
-HELP_TXT = Path('dictionaries/help').read_text()
+HELP_TXT_RU = Path('dictionaries/help_ru').read_text()
+HELP_TXT_EN = Path('dictionaries/help_en').read_text()
 
 # CONVERSATION
 GREETINGS_TXT = Path('dictionaries/greetings').read_text()
