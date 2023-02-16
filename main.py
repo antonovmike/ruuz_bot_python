@@ -7,7 +7,7 @@ from token_env import token
 bot = telebot.TeleBot(token)
 
 
-@bot.message_handler(commands=['help_ru', 'start'])
+@bot.message_handler(commands=['help', 'start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     # names = [CONVERSATION_HDNG, FOOD_HEADING, GRAMMAR_HEADING, TRAVEL_HEADING, ABOUT_HEADING]
@@ -54,15 +54,15 @@ def process_step(message):
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Приветствие / Salomlashish':
-        bot.send_message(chat_id=message.chat.id, text=GREETINGS_TXT)
+        bot.send_message(chat_id=message.chat.id, text=GREETINGS_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Как ваши дела? / Yaxshimi siz?':
-        bot.send_message(chat_id=message.chat.id, text=HOW_ARE_YOU_TXT)
+        bot.send_message(chat_id=message.chat.id, text=HOW_ARE_YOU_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'До свидания / Ko’rishkuncha':
-        bot.send_message(chat_id=message.chat.id, text=BY_TXT)
+        bot.send_message(chat_id=message.chat.id, text=BY_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
 # FOOD
@@ -75,47 +75,47 @@ def process_step(message):
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Овощи':
-        bot.send_message(chat_id=message.chat.id, text=VEGETABLES_TXT)
+        bot.send_message(chat_id=message.chat.id, text=VEGETABLES_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Фрукты':
-        bot.send_message(chat_id=message.chat.id, text=FRUITS_TXT)
+        bot.send_message(chat_id=message.chat.id, text=FRUITS_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Ягоды':
-        bot.send_message(chat_id=message.chat.id, text=BERRIES_TXT)
+        bot.send_message(chat_id=message.chat.id, text=BERRIES_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Мясо':
-        bot.send_message(chat_id=message.chat.id, text=MEAT_TXT)
+        bot.send_message(chat_id=message.chat.id, text=MEAT_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Напитки':
-        bot.send_message(chat_id=message.chat.id, text=BEVERAGES_TXT)
+        bot.send_message(chat_id=message.chat.id, text=BEVERAGES_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Выпечка':
-        bot.send_message(chat_id=message.chat.id, text=BAKED_GOODS_TXT)
+        bot.send_message(chat_id=message.chat.id, text=BAKED_GOODS_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Крупа':
-        bot.send_message(chat_id=message.chat.id, text=GROATS_TXT)
+        bot.send_message(chat_id=message.chat.id, text=GROATS_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Молочная продукция':
-        bot.send_message(chat_id=message.chat.id, text=MILK_TXT)
+        bot.send_message(chat_id=message.chat.id, text=MILK_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Специи':
-        bot.send_message(chat_id=message.chat.id, text=SPICE_TXT)
+        bot.send_message(chat_id=message.chat.id, text=SPICE_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Приём пищи':
-        bot.send_message(chat_id=message.chat.id, text=MEAL_TXT)
+        bot.send_message(chat_id=message.chat.id, text=MEAL_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'MISC_TXT':
-        bot.send_message(chat_id=message.chat.id, text=SPICE_TXT)
+        bot.send_message(chat_id=message.chat.id, text=SPICE_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
 # TRAVEL
@@ -125,8 +125,17 @@ def process_step(message):
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
     if message.text == 'Такси / Taksi':
-        bot.send_message(chat_id=message.chat.id, text=TRAVEL_TXT)
+        bot.send_message(chat_id=message.chat.id, text=TRAVEL_TXT_RU)
         msg = bot.send_message(chat_id=message.chat.id, text='Презапустить бот: /start', reply_markup=markup)
+        bot.register_next_step_handler(msg, process_step)
+    if message.text == TRAVEL_HEADING_EN:
+        markup.add('Taxi / Taksi')
+        markup.add(MENU_HEADING_EN)
+        msg = bot.send_message(chat_id=message.chat.id, text='Restart bot: /start', reply_markup=markup)
+        bot.register_next_step_handler(msg, process_step)
+    if message.text == 'Taxi / Taksi':
+        bot.send_message(chat_id=message.chat.id, text=TRAVEL_TXT_EN)
+        msg = bot.send_message(chat_id=message.chat.id, text='Restart bot: /start', reply_markup=markup)
         bot.register_next_step_handler(msg, process_step)
 # GRAMMAR
     if message.text == GRAMMAR_HEADING_RU:

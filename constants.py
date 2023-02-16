@@ -30,26 +30,43 @@ TRAVEL_HEADING_EN = 'Travel'
 ABOUT_HEADING_EN = 'About this bot / Bu bot haqida'
 
 # HELP OR ABOUT
-HELP_TXT_RU = Path('dictionaries/help_ru').read_text()
-HELP_TXT_EN = Path('dictionaries/help_en').read_text()
+HELP_TXT_RU = Path('dictionaries_ru/help').read_text()
+
+HELP_TXT_EN = Path('dictionaries_en/help').read_text()
 
 # CONVERSATION
-GREETINGS_TXT = Path('dictionaries/greetings').read_text()
-HOW_ARE_YOU_TXT = Path('dictionaries/how_are_you').read_text()
-BY_TXT = Path('dictionaries/by').read_text()
+GREETINGS_TXT_RU = Path('dictionaries_ru/greetings').read_text()
+HOW_ARE_YOU_TXT_RU = Path('dictionaries_ru/how_are_you').read_text()
+BY_TXT_RU = Path('dictionaries_ru/by').read_text()
+
+GREETINGS_TXT_EN = Path('dictionaries_en/greetings').read_text()
+HOW_ARE_YOU_TXT_EN = Path('dictionaries_en/how_are_you').read_text()
+BY_TXT_EN = Path('dictionaries_en/by').read_text()
 
 # FOOD
-BAKED_GOODS_TXT = Path('dictionaries/food_baked_goods').read_text()
-BERRIES_TXT = Path('dictionaries/food_berries').read_text()
-BEVERAGES_TXT = Path('dictionaries/food_beverages').read_text()
-FRUITS_TXT = Path('dictionaries/food_fruits').read_text()
-GROATS_TXT = Path('dictionaries/food_groats').read_text()
-MEAL_TXT = Path('dictionaries/food_meal').read_text()
-MEAT_TXT = Path('dictionaries/food_meat').read_text()
-MILK_TXT = Path('dictionaries/food_milk').read_text()
-MISC_TXT = Path('dictionaries/food_misc').read_text()
-SPICE_TXT = Path('dictionaries/food_spice').read_text()
-VEGETABLES_TXT = Path('dictionaries/food_vegetables').read_text()
+BAKED_GOODS_TXT_RU = Path('dictionaries_ru/food_baked_goods').read_text()
+BERRIES_TXT_RU = Path('dictionaries_ru/food_berries').read_text()
+BEVERAGES_TXT_RU = Path('dictionaries_ru/food_beverages').read_text()
+FRUITS_TXT_RU = Path('dictionaries_ru/food_fruits').read_text()
+GROATS_TXT_RU = Path('dictionaries_ru/food_groats').read_text()
+MEAL_TXT_RU = Path('dictionaries_ru/food_meal').read_text()
+MEAT_TXT_RU = Path('dictionaries_ru/food_meat').read_text()
+MILK_TXT_RU = Path('dictionaries_ru/food_milk').read_text()
+MISC_TXT_RU = Path('dictionaries_ru/food_misc').read_text()
+SPICE_TXT_RU = Path('dictionaries_ru/food_spice').read_text()
+VEGETABLES_TXT_RU = Path('dictionaries_ru/food_vegetables').read_text()
+
+BAKED_GOODS_TXT_EN = Path('dictionaries_en/food_baked_goods').read_text()
+BERRIES_TXT_EN = Path('dictionaries_en/food_berries').read_text()
+BEVERAGES_TXT_EN = Path('dictionaries_en/food_beverages').read_text()
+FRUITS_TXT_EN = Path('dictionaries_en/food_fruits').read_text()
+GROATS_TXT_EN = Path('dictionaries_en/food_groats').read_text()
+MEAL_TXT_EN = Path('dictionaries_en/food_meal').read_text()
+MEAT_TXT_EN = Path('dictionaries_en/food_meat').read_text()
+MILK_TXT_EN = Path('dictionaries_en/food_milk').read_text()
+MISC_TXT_EN = Path('dictionaries_en/food_misc').read_text()
+SPICE_TXT_EN = Path('dictionaries_en/food_spice').read_text()
+VEGETABLES_TXT_EN = Path('dictionaries_en/food_vegetables').read_text()
 
 # GRAMMAR
 UZ_VERB_FORMS_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/uz_verb_forms.png?raw=true'
@@ -59,4 +76,5 @@ CASES_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/c
 CASE_GENITIVE_PNG = 'https://github.com/antonovmike/ruuz_bot_python/blob/test/pictures/case_genitive.png?raw=true'
 
 # TRAVEL
-TRAVEL_TXT = Path('dictionaries/travel_taxi').read_text()
+TRAVEL_TXT_RU = Path('dictionaries_ru/travel_taxi').read_text()
+TRAVEL_TXT_EN = Path('dictionaries_en/travel_taxi').read_text()
